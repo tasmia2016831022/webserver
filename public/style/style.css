@@ -1,0 +1,56 @@
+body{
+    color: #333333;
+    font-family: monospace;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 16px;
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content{
+    flex-grow: 1;
+}
+
+.portrait{
+    width: 250px;
+    height: 250px;
+}
+
+footer{
+    color: cadetblue;
+    border-top: 1px solid black;
+    margin-top: 16px;
+    padding: 16px 0;
+}
+
+header{
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+h1{
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+header a{
+    color: grey;
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+input{
+    border: 1px solid grey;
+    padding: 8px;
+}
+
+button{
+    cursor: pointer;
+    border: 1px solid grey;
+    background: grey;
+    color: honeydew;
+    padding: 8px;
+}
