@@ -17,4 +17,8 @@ https://tasmiapl-weather-application.herokuapp.com/
  * You may get result for some unexpected input like "undefined",integers,float or some invalid strings(e.g. "fnff"). This is because of mapbox implementation, as they provide some default data for these kind of strings. I was too lazy to handle such error prone strings!! :3
  * In some cases darksky may not provide some real-time data, That may cause return "undefined" values in some cases. Such as, "Dhaka" may contain property of "precipType", but "Austin" may not. So, in that case it'll retun "undefined".
  * Mapbox api may be enabled for "cors" mode, but darksky don't.
+ 
+## DISCLAIMER: (Please Read)
+   There may have some api keys for third party services and exposed in the public ripository. These api keys are used under free trial. Please use your own api key for darksky and mapbox for developement purpose and they offer some free access.
+  
 
