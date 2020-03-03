@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint",
     "start": "node src/app.js",
     "dev": "nodemon src/app.js -e js,hbs"
   },
@@ -11,11 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "hbs": "^4.1.0",
+    "http-proxy": "^1.18.0",
     "request": "^2.88.0"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.18.3",
     "nodemon": "^2.0.2"
   }
 }
