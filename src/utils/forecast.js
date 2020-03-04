@@ -52,4 +52,21 @@ const axiosForecast = (lat, long, callback) => {
   });
 };
 
-module.exports = { forecast, axiosForecast };
+const modcast = async (lat, long) => {
+  const lang = "en";
+  const url = `https://api.darksky.net/forecast/${token.darkSkyT}/${long},${lat}?lang=${lang}`;
+
+  let res = await axios.get(url);
+  let data = res.data;
+  const result = {
+    temperature: data.currently.temperature,
+    percentage: data.currently.precipProbability * 100,
+    precipType: data.currently.precipType, ///this data can be unavailable sometimes , depends on currently property
+    summary: data.daily.data[0].summary,
+    timezone: data.timezone
+  };
+  console.log(result);
+  return result;
+};
+
+module.exports = { forecast, axiosForecast, modcast};

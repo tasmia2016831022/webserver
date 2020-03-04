@@ -53,7 +53,18 @@ const axiosGeocode = (endpoint, callback) => {
 };
 
 
+const modgeo = async(endpoint) => {
+    const limit = 1 ;
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${endpoint}.json?access_token=${token.MapBoxAT}&limit=${limit}`;
+    
+    let res = await axios.get(url);
+    let data = res.data;
+    const result  = { latitude: data.features[0].center[0], longitude: data.features[0].center[1] };
+    //console.log(obj);
+    return result;
+    
+    
+} 
 
 
-
-module.exports = { geocode, axiosGeocode };
+module.exports = { geocode, axiosGeocode , modgeo};
