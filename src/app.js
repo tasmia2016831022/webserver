@@ -1,13 +1,13 @@
 /* eslint-disable no-undef */
 const express = require("express");
-const geocode = require("./utils/geocode");
+const {geocode} = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 const path = require("path");
 const hbs = require("hbs");
 
 const app = express();
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3005 ;
 
 /// Define paths for Express Config
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -67,6 +67,8 @@ app.get("/weather", (req, res) => {
       }
     }
   );
+  
+  
 });
 
 app.get("/help/*", (req, res) => {
