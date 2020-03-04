@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const express = require("express");
-const {geocode} = require("./utils/geocode");
-const forecast = require("./utils/forecast");
+const {geocode , axiosGeocode} = require("./utils/geocode");
+const {forecast, axiosForecast} = require("./utils/forecast");
 const path = require("path");
 const hbs = require("hbs");
 
@@ -51,22 +51,29 @@ app.get("/weather", (req, res) => {
       error: "You must provide an address"
     });
   }
-  geocode(
-    req.query.address,
-    (error, { latitude, longitude } = {}) => {
-      if (error) {
-        return res.send({ error });
-      } else {
-        forecast(latitude, longitude, (error, data) => {
-          if (error) {
-            return res.send({ error });
-          } else {
-            res.send(data);
-          }
-        });
-      }
-    }
-  );
+//   geocode(
+//     req.query.address,
+//     (error, { latitude, longitude } = {}) => {
+//       if (error) {
+//         return res.send({ error });
+//       } else {
+//         forecast(latitude, longitude, (error, data) => {
+//           if (error) {
+//             return res.send({ error });
+//           } else {
+//             res.send(data);
+//           }
+//         });
+//       }
+//     }
+//   );
+
+axiosGeocode(req.query.address,({latitude, longitude} = {}) => {
+    axiosForecast(latitude, longitude, data => {
+        res.send(data);
+        console.log(latitude, longitude);
+    })
+});
   
   
 });

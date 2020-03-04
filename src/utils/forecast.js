@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 const request = require("request");
 const token = require("./tokens.js");
+const axios = require("axios");
 
 const forecast = (lat, long, callback) => {
   const lang = "en";
@@ -29,4 +30,26 @@ const forecast = (lat, long, callback) => {
   );
 };
 
-module.exports = forecast;
+const axiosForecast = (lat, long, callback) => {
+  const lang = "en";
+  const url = `https://api.darksky.net/forecast/${token.darkSkyT}/${long},${lat}?lang=${lang}`;
+
+  axios({
+    method: "get",
+    url,
+    responseType: "object"
+  }).then(response => {
+    if (response.data.error) callback(response.data.error);
+    else {
+      callback({
+        temperature: response.data.currently.temperature,
+        percentage: response.data.currently.precipProbability * 100,
+        precipType: response.data.currently.precipType, ///this data can be unavailable sometimes , depends on currently property
+        summary: response.data.daily.data[0].summary,
+        timezone: response.data.timezone
+      });
+    }
+  });
+};
+
+module.exports = { forecast, axiosForecast };
