@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const express = require("express");
-const { geocode, axiosGeocode, modgeo } = require("./utils/geocode");
-const { forecast, axiosForecast, modcast } = require("./utils/forecast");
+const { modgeo } = require("./utils/geocode");
+const { modcast } = require("./utils/forecast");
 const path = require("path");
 const hbs = require("hbs");
 
