@@ -30,7 +30,6 @@ const geocode = (endpoint, callback) => {
   );
 };
 
-
 const axiosGeocode = (endpoint, callback) => {
   const limit = 1;
   const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${endpoint}.json?access_token=${token.MapBoxAT}&limit=${limit}`;
@@ -52,19 +51,22 @@ const axiosGeocode = (endpoint, callback) => {
   });
 };
 
+const modgeo = async endpoint => {
+  const limit = 1;
+  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${endpoint}.json?access_token=${token.MapBoxAT}&limit=${limit}`;
 
-const modgeo = async(endpoint) => {
-    const limit = 1 ;
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${endpoint}.json?access_token=${token.MapBoxAT}&limit=${limit}`;
-    
+  try {
     let res = await axios.get(url);
     let data = res.data;
-    const result  = { latitude: data.features[0].center[0], longitude: data.features[0].center[1] };
+    const result = {
+      latitude: data.features[0].center[0],
+      longitude: data.features[0].center[1]
+    };
     //console.log(obj);
     return result;
-    
-    
-} 
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-
-module.exports = { geocode, axiosGeocode , modgeo};
+module.exports = { geocode, axiosGeocode, modgeo };

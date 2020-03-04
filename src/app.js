@@ -1,13 +1,13 @@
 /* eslint-disable no-undef */
 const express = require("express");
-const {geocode , axiosGeocode, modgeo} = require("./utils/geocode");
-const {forecast, axiosForecast, modcast} = require("./utils/forecast");
+const { geocode, axiosGeocode, modgeo } = require("./utils/geocode");
+const { forecast, axiosForecast, modcast } = require("./utils/forecast");
 const path = require("path");
 const hbs = require("hbs");
 
 const app = express();
 
-const port = process.env.PORT || 3005 ;
+const port = process.env.PORT || 3005;
 
 /// Define paths for Express Config
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -51,36 +51,37 @@ app.get("/weather", async (req, res) => {
       error: "You must provide an address"
     });
   }
-//   geocode(
-//     req.query.address,
-//     (error, { latitude, longitude } = {}) => {
-//       if (error) {
-//         return res.send({ error });
-//       } else {
-//         forecast(latitude, longitude, (error, data) => {
-//           if (error) {
-//             return res.send({ error });
-//           } else {
-//             res.send(data);
-//           }
-//         });
-//       }
-//     }
-//   );
+  //   geocode(
+  //     req.query.address,
+  //     (error, { latitude, longitude } = {}) => {
+  //       if (error) {
+  //         return res.send({ error });
+  //       } else {
+  //         forecast(latitude, longitude, (error, data) => {
+  //           if (error) {
+  //             return res.send({ error });
+  //           } else {
+  //             res.send(data);
+  //           }
+  //         });
+  //       }
+  //     }
+  //   );
 
-// axiosGeocode(req.query.address,({latitude, longitude} = {}) => {
-//     axiosForecast(latitude, longitude, data => {
-//         res.send(data);
-//         console.log(latitude, longitude);
-//     })
-// });
+  // axiosGeocode(req.query.address,({latitude, longitude} = {}) => {
+  //     axiosForecast(latitude, longitude, data => {
+  //         res.send(data);
+  //         console.log(latitude, longitude);
+  //     })
+  // });
 
- const data = await modgeo(req.query.address);
- const result = await modcast(data.latitude, data.longitude);
- 
- res.send(result);
-  
-  
+  try {
+    const data = await modgeo(req.query.address);
+    const result = await modcast(data.latitude, data.longitude);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.get("/help/*", (req, res) => {
